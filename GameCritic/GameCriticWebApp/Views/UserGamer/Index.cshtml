@@ -1,0 +1,79 @@
+﻿@model IEnumerable<GameCriticWebApp.ViewModels.UserGamerVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" href="~/css/CRUDStyles.css" asp-append-version="true" />
+
+<h1>User List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IduserGamer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var userGamer in Model) {
+        <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => userGamer.IduserGamer)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => userGamer.Username)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => userGamer.FirstName)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => userGamer.LastName)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => userGamer.Email)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => userGamer.City)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => userGamer.PostalCode)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => userGamer.HomeAddress)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => userGamer.RoleName)
+            </td>
+            <td>
+                    @Html.ActionLink("Details", "Details", new { id = userGamer.IduserGamer}, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

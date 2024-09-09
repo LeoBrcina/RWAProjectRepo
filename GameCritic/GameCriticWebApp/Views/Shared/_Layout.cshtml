@@ -1,0 +1,98 @@
+﻿@{
+    var user = this.ViewContext.HttpContext.User;
+    bool loggedIn = false;
+    string username = "";
+    if (user != null && !string.IsNullOrEmpty(user.Identity?.Name))
+    {
+        loggedIn = true;
+        username = user.Identity.Name;
+    }
+
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var isLoginPage = currentController == "UserGamer" && currentAction == "Login";
+    var isRegisterPage = currentController == "UserGamer" && currentAction == "Register";
+    var isLogoutPage = currentController == "UserGamer" && currentAction == "Logout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GameCriticWebApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/GameCriticWebApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/_LayoutLandingStyle.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-page="/Index">Game Critic</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+
+            @if (!isLoginPage && !isRegisterPage && !isLogoutPage)
+            {
+                <div class="row my-4">
+                    <div class="col-md-4">
+                        <img src="~/imgs/beautiful-mountains-landscape_23-2151151101.png" class="img-fluid" alt="Sample Image">
+                    </div>
+                    <div class="col-md-8">
+                        <div>
+                            <h2>Welcome to Game Critic</h2>
+                            <p>Your one-stop destination for honest and in-depth game reviews.
+                                Explore the latest reviews, ratings, and gaming news all in one place.
+                                At Game Critic, we believe in providing gamers with the most accurate and detailed reviews to help them make informed decisions.
+                                Whether you are a casual player or a hardcore gamer, our platform offers a wealth of information, including game guides, walkthroughs, and expert opinions.
+                                Join our community and stay updated with the newest trends in the gaming world.
+                                Discover new games, share your thoughts, and connect with fellow gamers and players.</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </main>
+    </div>
+    @if (!isLoginPage && !isRegisterPage && !isLogoutPage)
+    {
+        <div class="login-btn">
+            <ul class="navbar-nav flex-grow-1">
+                @if (!loggedIn)
+                {
+                    <li class="nav-item">
+                        <a class="btn btn-danger" asp-area="" asp-controller="UserGamer" asp-action="Login">Login</a>
+                    </li>
+                }
+            </ul>
+            @if (loggedIn)
+            {
+                <div class="d-flex">
+                    <a asp-controller="UserGamer" asp-action="Logout" class="btn btn-danger">Logout, @username</a>
+                </div>
+            }
+        </div>
+    }
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2024 - GameCriticWebApp
+            </div>
+        </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

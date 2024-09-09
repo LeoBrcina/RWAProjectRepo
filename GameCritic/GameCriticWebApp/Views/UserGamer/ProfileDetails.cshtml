@@ -1,0 +1,180 @@
+﻿@model UserGamerVM
+
+@{
+    ViewData["Title"] = "ProfileDetails";
+}
+
+<link rel="stylesheet" href="~/css/CRUDStyles.css" asp-append-version="true" />
+
+<h1>User Profile Details</h1>
+<hr />
+<div id="profileDetails">
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class="col-sm-10" id="FirstName">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-10" id="LastName">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10" id="Email">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+        <dd class="col-sm-10" id="City">
+            @Html.DisplayFor(model => model.City)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </dt>
+        <dd class="col-sm-10" id="PostalCode">
+            @Html.DisplayFor(model => model.PostalCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HomeAddress)
+        </dt>
+        <dd class="col-sm-10" id="HomeAddress">
+            @Html.DisplayFor(model => model.HomeAddress)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    @Html.ActionLink("Edit profile", "ProfileEdit", new { id = Model.IduserGamer }, new { id = "ajaxEdit", @class = "btn btn-primary" })
+    <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Home</a>
+    <p />
+</div>
+
+<div class="modal fade" id="AjaxEditModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update User Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="profileForm">
+                    <div class="mb-3">
+                        <label for="fNInput" class="form-label">First name</label>
+                        <input id="fNInput" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="lNInput" class="form-label">Last name</label>
+                        <input id="lNInput" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="eInput" class="form-label">E-mail</label>
+                        <input type="email" id="eInput" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="cInput" class="form-label">City</label>
+                        <input id="cInput" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="pCInput" class="form-label">Postal Code</label>
+                        <input id="pCInput" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="hAInput" class="form-label">Home Address</label>
+                        <input id="hAInput" class="form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="SaveProfileButton" type="button" class="btn btn-primary">Save profile</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const modelId = "@Model.IduserGamer";
+        $("#ajaxUpdate").click(() => {
+            $.ajax({
+                url: `/UserGamer/GetProfileData/${modelId}`,
+                method: "GET"
+            })
+                .done((data) => {
+                    $("#FirstName").text(data.firstName);
+                    $("#LastName").text(data.lastName);
+                    $("#Email").text(data.email);
+                    $("#City").text(data.city);
+                    $("#PostalCode").text(data.city);
+                    $("#HomeAddress").text(data.city);
+                });
+        })
+
+        const ajaxModal = $("#AjaxEditModal")[0];
+        const ajaxEdit = new bootstrap.Modal(ajaxModal);
+
+        $("#ajaxEdit").click((e) => {
+            e.preventDefault();
+
+            const firstName = $("#FirstName").text().trim();
+            const lastName = $("#LastName").text().trim();
+            const email = $("#Email").text().trim();
+            const city = $("#City").text().trim();
+            const postalCode = $("#PostalCode").text().trim();
+            const homeAddress = $("#HomeAddress").text().trim();
+
+            $("#fNInput").val(firstName);
+            $("#lNInput").val(lastName);
+            $("#eInput").val(email);
+            $("#cInput").val(city);
+            $("#pCInput").val(postalCode);
+            $("#hAInput").val(homeAddress);
+
+            ajaxEdit.show();
+        });
+
+
+
+        $("#SaveProfileButton").click(() => {
+            const profile = {
+                firstName: $("#fNInput").val(),
+                lastName: $("#lNInput").val(),
+                email: $("#eInput").val(),
+                city: $("#cInput").val(),
+                postalCode: $("#pCInput").val(),
+                homeAddress: $("#hAInput").val(),
+
+            };
+
+            $.ajax({
+                url: `/UserGamer/SetProfileData/${modelId}`,
+                method: "PUT",
+                contentType: "application/json",
+                data: JSON.stringify(profile)
+            })
+                .done((data) => {
+                    ajaxEdit.hide();
+                    
+                    location.assign("ProfileDetails");
+
+                    $("#ajaxUpdate").trigger("click");
+                })
+                .fail(() => {
+                    alert("ERROR: Could not update profile");
+                })
+        })
+    </script>
+}
+

@@ -1,0 +1,136 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: linear-gradient(270deg, #cb1121, #ff7e5f, #feb47b, #86a8e7, #2575fc, #6a11cb, #cb1121);
+    background-size: 1400% 1400%;
+    animation: gradient 20s ease-in-out infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    10% {
+        background-position: 10% 50%;
+    }
+
+    20% {
+        background-position: 20% 50%;
+    }
+
+    30% {
+        background-position: 30% 50%;
+    }
+
+    40% {
+        background-position: 40% 50%;
+    }
+
+    50% {
+        background-position: 50% 50%;
+    }
+
+    60% {
+        background-position: 60% 50%;
+    }
+
+    70% {
+        background-position: 70% 50%;
+    }
+
+    80% {
+        background-position: 80% 50%;
+    }
+
+    90% {
+        background-position: 90% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.navbar {
+    background-color: purple !important;
+    font-size: 1.5rem;
+}
+
+.navbar-brand,
+.nav-link,
+.btn {
+    color: white !important;
+    font-size: 1.2rem;
+}
+
+.navbar-brand {
+    margin: 0 auto;
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    font-size: 2rem;
+}
+
+.btn-danger {
+    background-color: purple !important;
+    border-color: purple !important;
+    width: 500px;
+    color: white !important;
+    display: block;
+    margin: 0 auto;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+    .btn-danger:hover {
+        background-color: white !important; 
+        color: black !important; 
+    }
+
+.col-md-4{
+    width: 600px;
+}
+
+.col-md-8{
+    max-width: 540px;
+}
+
+.img-fluid {
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 80px;
+    color: white;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: white;
+}
+
+p {
+    font-size: 1rem;
+    text-align: justify;
+    max-width: 600px;
+    color: white;
+}
+
+.pb-3{
+    max-width: 1500px;
+}
+
+.login-btn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer{
+    background-color: purple;
+}
+
+.container{
+    color: white;
+}

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<GenreVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/CRUDStyles.css" asp-append-version="true" />
+
+<h1>Genre List</h1>
+
+<p>
+    @if (!User.IsInRole("User"))
+                        {
+    <a asp-action="Create" class="btn btn-primary">Create New Genre</a>
+                        }
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GenreName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var genre in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => genre.GenreName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => genre.Description)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        @if (!User.IsInRole("User"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = genre.Idgenre}, new { @class = "btn btn-primary" })
+                        }
+                        @Html.ActionLink("Details", "Details", new { id = genre.Idgenre }, new { @class = "btn btn-primary" })
+                        @if (!User.IsInRole("User"))
+                        {
+                            @Html.ActionLink("Delete", "Delete", new { id = genre.Idgenre }, new { @class = "btn btn-danger" })
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

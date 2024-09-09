@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Log List</title>
+        <link rel="stylesheet" href="logItemsPageStyle.css">
+    </head>
+    <body>
+        <div class="container header-container">
+            <div class="header">
+                <h1>Log List</h1>
+                <div>
+                    <button id="logout" onclick="jwtLogout()">Logout</button>
+                </div>
+            </div>
+        </div>
+        <div class="container content-container">
+                <ul class="log-list" id="logList">
+                </ul>
+        </div>
+        <div class="container footer-container">
+            <div class="footer">
+                <button class="show-logs" id="showLogs">Show Logs</button>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="logItemsPageScript.js"></script>
+    </body>
+</html>

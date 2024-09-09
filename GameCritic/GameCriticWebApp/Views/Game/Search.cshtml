@@ -1,0 +1,115 @@
+﻿@model SearchVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/CRUDStyles.css" asp-append-version="true" />
+
+<h1>List of Games</h1>
+
+<form asp-action="Search" method="GET">
+    <div class="row">
+        <div class="col-8">
+            <input asp-for="Q" class="form-control" placeholder="Game Search" />
+        </div>
+        <div class="col-auto">
+            <label class="form-label mt-1">Sort by:</label>
+        </div>
+        <div class="col-auto">
+            <select asp-for="OrderBy" class="form-select">
+                <option value="idgame">(default)</option>
+                <option>Game Name</option>
+                <option>Game Type</option>
+                <option>Size</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <select asp-for="Size" class="form-select">
+                <option>5</option>
+                <option>10</option>
+                <option>15</option>
+                <option>30</option>
+                <option>50</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <input type="submit" value="Search" name="submit" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Games.FirstOrDefault().GameName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Games.FirstOrDefault().GameTypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Games.FirstOrDefault().Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Games.FirstOrDefault().Size)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var game in Model.Games)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => game.GameName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => game.GameTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => game.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => game.Size)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = game.Idgame }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<nav>
+    <ul class="pagination">
+        @for (int i = Model.FromPager; i <= Model.ToPager; i++)
+        {
+            var linkText = @i.ToString();
+            if (i != 1 && i == Model.FromPager)
+            {
+                linkText = "<--";
+            }
+            else if (i != Model.LastPage && i == Model.ToPager)
+            {
+                linkText = "-->";
+            }
+
+            var linkClass = "page-item";
+            if (i == Model.Page)
+            {
+                linkClass = "page-item active";
+            }
+            <li class="@linkClass">
+                @Html.ActionLink(
+                         @linkText,
+                         "Search",
+                         new
+                         {
+                             q = Model.Q,
+                             orderby = Model.OrderBy,
+                             page = i,
+                             size = Model.Size
+                         },
+                         new { @class = "page-link" })
+            </li>
+        }
+    </ul>
+</nav>

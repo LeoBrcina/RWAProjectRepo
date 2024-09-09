@@ -1,0 +1,129 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    padding: 15px;
+    width: 100%;
+    box-shadow: 0 0 15px rgba(153, 0, 153, 0.5);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+    .navbar button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #990099;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 0 5px;
+    }
+
+.nav-right {
+    display: flex;
+    gap: 10px;
+}
+
+.container {
+    width: 85%;
+    max-width: 1400px;
+    margin: 20px;
+    background-color: #000;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.header-container, .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.header-container h1 {
+    margin: 0;
+    color: #990099;
+}
+
+.header #logout {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: #990099;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.content-container {
+    padding: 20px;
+    flex: 1;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.content {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.log-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    color: white;
+}
+
+    .log-list li {
+        background-color: #ccc;
+        color: #000;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+    }
+
+.footer-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+}
+
+.footer select {
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #000;
+}
+
+.footer .show-logs {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: #990099;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+

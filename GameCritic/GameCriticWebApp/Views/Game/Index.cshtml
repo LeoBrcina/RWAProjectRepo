@@ -1,0 +1,85 @@
+﻿@model IEnumerable<GameVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/CRUDStyles.css" asp-append-version="true" />
+
+<h1>Game List</h1>
+
+@if (!User.IsInRole("User"))
+{
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New Game</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GameName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GameTypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GenreNames)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var game in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => game.GameName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => game.GameTypeName)
+                </td>
+                <td>
+                    @if (game.GenreNames != null && game.GenreNames.Any())
+                    {
+                        <ul class="genre-list">
+                            @foreach (var genre in game.GenreNames)
+                            {
+                                <li>@genre</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>No genres available</p>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => game.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => game.Size)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        @if (!User.IsInRole("User"))
+                        {
+                        @Html.ActionLink("Edit", "Edit", new { id = game.Idgame }, new { @class = "btn btn-primary" })
+                        }
+                        @Html.ActionLink("Details", "Details", new { id = game.Idgame }, new { @class = "btn btn-primary" })
+                        @if (!User.IsInRole("User"))
+                        {
+                        @Html.ActionLink("Delete", "Delete", new { id = game.Idgame }, new { @class = "btn btn-danger" })
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

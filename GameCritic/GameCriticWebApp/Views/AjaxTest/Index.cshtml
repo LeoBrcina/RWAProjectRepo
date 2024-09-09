@@ -1,0 +1,28 @@
+﻿<div id="ajaxPlaceholder">
+    This is a default placeholder test.
+</div>
+<hr />
+<button id="ajaxUpdateHtmlButton" class="btn btn-success">Update HTML</button>
+<form asp-controller="AjaxTest" asp-action="AjaxHtml" data-ajax="true" data-ajaxmethod="GET" data-ajax-update="#ajaxPlaceholder">
+    <input type="submit" class="btn btn-primary" value="Unobtrusive update using form" />
+</form>
+<a href="#" class="btn btn-info"
+   data-ajax="true"
+   data-ajaxmethod="GET"
+   data-ajax-url="/AjaxTest/AjaxHtml"
+   data-ajax-update="#ajaxPlaceholder">Unobtrusive update using just a button</a>
+
+
+@section Scripts {
+    <script>
+        $("#ajaxUpdateHtmlButton").click(() => {
+            // $.ajax({
+            //     url: "/AjaxTest/AjaxHtml"
+            // })
+            //     .done((resultHtml) => {
+            //         $("#ajaxPlaceholder").html(resultHtml);
+            //     })
+            $("#ajaxPlaceholder").load("/AjaxTest/AjaxHtml");
+        })
+    </script>
+}

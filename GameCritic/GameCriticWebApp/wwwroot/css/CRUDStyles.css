@@ -1,0 +1,110 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: linear-gradient(270deg, #cb1121, #ff7e5f, #feb47b, #86a8e7, #2575fc, #6a11cb, #cb1121);
+    background-size: 1400% 1400%;
+    animation: gradient 20s ease-in-out infinite;
+    color: white;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    10% {
+        background-position: 10% 50%;
+    }
+
+    20% {
+        background-position: 20% 50%;
+    }
+
+    30% {
+        background-position: 30% 50%;
+    }
+
+    40% {
+        background-position: 40% 50%;
+    }
+
+    50% {
+        background-position: 50% 50%;
+    }
+
+    60% {
+        background-position: 60% 50%;
+    }
+
+    70% {
+        background-position: 70% 50%;
+    }
+
+    80% {
+        background-position: 80% 50%;
+    }
+
+    90% {
+        background-position: 90% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.genre-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+    .genre-list li {
+        display: inline-block; 
+        background-color: #f0f0f0; 
+        color: #333; 
+        margin-right: 5px; 
+        padding: 5px 10px; 
+        border-radius: 3px; 
+        font-size: 14px; 
+    }
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h3{
+    text-align: center;
+    color: white;
+}
+
+.infoContainer {
+    max-width: 700px;
+    width: 100%; 
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pb-3 {
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonContainer {
+    text-align:center;
+}
+
+#1.form-group {
+    width: 400px;
+}
+
+.col-md-4{
+   width: 50%;
+}
+
+.table{
+    color: white;
+}

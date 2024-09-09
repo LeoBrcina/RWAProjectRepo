@@ -1,0 +1,86 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: linear-gradient(270deg, #cb1121, #ff7e5f, #feb47b, #86a8e7, #2575fc, #6a11cb, #cb1121);
+    background-size: 1400% 1400%;
+    animation: gradient 20s ease-in-out infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    10% {
+        background-position: 10% 50%;
+    }
+
+    20% {
+        background-position: 20% 50%;
+    }
+
+    30% {
+        background-position: 30% 50%;
+    }
+
+    40% {
+        background-position: 40% 50%;
+    }
+
+    50% {
+        background-position: 50% 50%;
+    }
+
+    60% {
+        background-position: 60% 50%;
+    }
+
+    70% {
+        background-position: 70% 50%;
+    }
+
+    80% {
+        background-position: 80% 50%;
+    }
+
+    90% {
+        background-position: 90% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.navbar {
+    background-color: purple !important;
+    font-size: 1.2rem;
+}
+
+.container{
+    text-align: center;
+}
+
+.navbar-brand,
+.nav-link,
+.btn {
+    color: white !important;
+    font-size: 1.2rem;
+}
+
+.btn-primary {
+    background-color: white !important;
+    color: black !important;
+    margin-left: 15px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: purple !important;
+    color: white !important;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}

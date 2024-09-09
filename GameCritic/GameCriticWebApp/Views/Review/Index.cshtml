@@ -1,0 +1,57 @@
+﻿@model IEnumerable<GameCriticWebApp.ViewModels.ReviewVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/CRUDStyles.css" asp-append-version="true" />
+
+<h1>Write a Review</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Write a New Review</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GameName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewText)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var review in Model) {
+        <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => review.GameName)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => review.Rating)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => review.ReviewText)
+            </td>
+            <td>
+                <div class="btn-group">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = review.Idreview }, new { @class = "btn btn-primary" })
+                        }
+                    @Html.ActionLink("Details", "Details", new { id = review.Idreview }, new { @class = "btn btn-primary" })
+                        @if (User.IsInRole("Admin"))
+                        {
+                        @Html.ActionLink("Delete", "Delete", new { id = review.Idreview }, new { @class = "btn btn-danger" })
+                        }
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

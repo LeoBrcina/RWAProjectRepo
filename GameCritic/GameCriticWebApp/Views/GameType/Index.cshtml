@@ -1,0 +1,56 @@
+﻿@model IEnumerable<GameTypeVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/CRUDStyles.css" asp-append-version="true" />
+
+<h1>Game Type List</h1>
+
+<p>
+    @if (!User.IsInRole("User"))
+                        {
+    <a asp-action="Create" class="btn btn-primary">Create New Game Type</a>
+                        }
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GameTypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var gameType in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => gameType.GameTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => gameType.Description)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        @if (!User.IsInRole("User"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = gameType.IdgameType }, new { @class = "btn btn-primary" })
+                        }
+                        @Html.ActionLink("Details", "Details", new { id = gameType.IdgameType }, new { @class = "btn btn-primary" })
+                        @if (!User.IsInRole("User"))
+                        {
+                            @Html.ActionLink("Delete", "Delete", new { id = gameType.IdgameType }, new { @class = "btn btn-danger" })
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
